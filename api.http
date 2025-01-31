@@ -74,3 +74,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 DELETE http://127.0.0.1:8000/api/delete-favorite-book/4/ HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzYwMDY3LCJpYXQiOjE3MzgzNTk3NjcsImp0aSI6Ijk2NWYyMjcxZmMwZDQ5MDY5OGE1NzlkZjVlMTU3ZDQ2IiwidXNlcl9pZCI6NH0.0-OQ8jYKwtWjblDaakmR9XFtlpq1CSY1LWSf2EsYAaA
+
+###
+
+GET http://127.0.0.1:8000/api/get-favorite-books/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzYwNjY3LCJpYXQiOjE3MzgzNjAzNjcsImp0aSI6IjMxMjY5ZjJhMGRlODRiODc5MTViY2MzZTI0NDdiNzQyIiwidXNlcl9pZCI6NH0._U4PU57grgGnMzfwCIbTkkjl7CP67ur05NXTRRIdgq8

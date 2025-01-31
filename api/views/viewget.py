@@ -6,6 +6,8 @@ import traceback
 from ..serializers import *
 from django.contrib.auth.models import User
 from api.models import *
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
 def get_users(request):
@@ -95,4 +97,20 @@ def get_author_by_id(request, author_id):
             )
         else:
             message = "An unexpected error occurred. Please contact support."
-        return Response({"error": message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)                
+        return Response({"error": message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class GetFavoriteBooksView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        
+        # Retrieve the list of books in the user's favorites
+        favorite_books = FavoriteBook.objects.filter(user=user)
+
+        # Serialize the books
+        books_data = BookSerializer([favorite_book.book for favorite_book in favorite_books], many=True)
+
+        return Response({
+            "favorite_books": books_data.data
+        }, status=status.HTTP_200_OK)                   
