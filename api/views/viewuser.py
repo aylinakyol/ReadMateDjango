@@ -3,32 +3,37 @@ from rest_framework.response import Response
 from ..serializers import UserSerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
+from ..models import *
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-
-@api_view(['POST'])
-def login_user(request):
-    user = get_object_or_404(User, username=request.data['username'])
-    if not user.check_password(request.data['password']):
-        return Response({"detail":"Not found"})
-    token, created = Token.objects.get_or_create(user=user)
-    serializer = UserSerializer(instance=user) 
-    return Response({"token":token.key,"user":serializer.data})
+from django.contrib.auth.models import User
+from rest_framework import authentication
+from rest_framework import exceptions
+from django.conf import settings
+from django.core.exceptions import ValidationError
+import traceback
 
 @api_view(['POST'])
 def register_user(request):
-    serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        user = User.objects.get(username=request.data['username'])
-        user.set_password(request.data['password'])
-        user.save()
-        token = Token.objects.create(user=user)
-        return Response({"user":serializer.data})
-    return Response(serializer.errors)
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def test_token(request):
-    return Response("passed for {}".format(request.user.email))
+    try:
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            user = User.objects.get(username=request.data['username'])
+            user.set_password(request.data['password'])
+            user.save()
+            token = Token.objects.create(user=user)
+            return Response({"user":serializer.data})
+        return Response(serializer.errors)
+    except Exception as e:
+        if settings.DEBUG:
+            message = (
+                f"***** ---> str(e): {str(e)} "
+                f"***** ---> e.args: {str(e.args)} "
+                f"***** ---> type(e): {type(e).__name__} "
+                f"***** ---> traceback: {traceback.format_exc()}"
+            )
+        else:
+            message = "An unexpected error occurred. Please contact support."
+        return Response({"error": message}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

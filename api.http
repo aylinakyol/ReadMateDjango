@@ -1,5 +1,76 @@
-POST http://localhost:8000/api/token/
+POST http://localhost:8000/api/register-user/
 Content-Type: application/json
 
-{"username": "ayli5n", "password": "06Da3609"}
+{"username": "user2", "password": "06Da3609", "email": "newmail@gmail.com"}
 
+###
+POST http://localhost:8000/api/login-user/
+Content-Type: application/json
+
+{"username": "user2", "password": "06Da3609"}
+
+###
+
+PUT http://127.0.0.1:8000/api/update-book/1/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzU0MTcwLCJpYXQiOjE3MzgzNTM4NzAsImp0aSI6ImI2ZDk5MDhhODIzZDRiN2U5OWYzZTZmZjgyMDI3MjFiIiwidXNlcl9pZCI6M30.sOwNZtKhaqJ2gUS7AzKnYPA-bYtgTYFFz6Bpz_qXgQ8
+
+{
+  "book_name": "New Book name",
+  "author": 3,
+  "description": "2025-01-31"
+}
+
+###
+
+PUT http://127.0.0.1:8000/api/update-author/1/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzM3MTE5LCJpYXQiOjE3MzgzMzY4MTksImp0aSI6ImIyNzc5NDVjMDdkNjQwNzc4ZGQ1YTJmYTQwMGE0MDczIiwidXNlcl9pZCI6M30.iMN7BSpYOy_HjFD-avEF5KVqIk0FdajJlpVKeJxqxGo
+
+{
+  "name": "New Name",
+  "description": "2025-01-31"
+}
+###
+
+POST http://127.0.0.1:8000/api/add-book/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzU0MTcwLCJpYXQiOjE3MzgzNTM4NzAsImp0aSI6ImI2ZDk5MDhhODIzZDRiN2U5OWYzZTZmZjgyMDI3MjFiIiwidXNlcl9pZCI6M30.sOwNZtKhaqJ2gUS7AzKnYPA-bYtgTYFFz6Bpz_qXgQ8
+
+{
+  "book_name": "New Book name",
+  "author": "New Name",
+  "description": "2025-01-31"
+}
+###
+
+POST http://127.0.0.1:8000/api/add-author/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzU4MTE1LCJpYXQiOjE3MzgzNTc4MTUsImp0aSI6IjgyNmUxNjU4OTY2OTRjYTE5ZGI2MGY2OTE0ZmVjZWI4IiwidXNlcl9pZCI6NH0.t8QGCZoF2DOaCWnWcEWacXXRfFHrSaC4cZ2y80sX5N8
+
+{
+  "name": "Author name",
+  "description": "2025-01-31"
+}
+
+###
+
+DELETE http://127.0.0.1:8000/api/delete-author/3/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzU1NTk5LCJpYXQiOjE3MzgzNTUyOTksImp0aSI6IjRjOGYwOTk4ZGFkODQ4NzBiYTFjNjgxYzI2NDJkOWY1IiwidXNlcl9pZCI6NH0.jp3JNf8y4AredVm9sNkIeK6dqkoqEbvR19DtuOg74rs
+
+###
+DELETE http://127.0.0.1:8000/api/delete-book/3/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzU1NTk5LCJpYXQiOjE3MzgzNTUyOTksImp0aSI6IjRjOGYwOTk4ZGFkODQ4NzBiYTFjNjgxYzI2NDJkOWY1IiwidXNlcl9pZCI6NH0.jp3JNf8y4AredVm9sNkIeK6dqkoqEbvR19DtuOg74rs
+###
+
+POST http://127.0.0.1:8000/api/add-favorite-book/6/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzYwMDY3LCJpYXQiOjE3MzgzNTk3NjcsImp0aSI6Ijk2NWYyMjcxZmMwZDQ5MDY5OGE1NzlkZjVlMTU3ZDQ2IiwidXNlcl9pZCI6NH0.0-OQ8jYKwtWjblDaakmR9XFtlpq1CSY1LWSf2EsYAaA
+
+###
+
+DELETE http://127.0.0.1:8000/api/delete-favorite-book/4/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM4MzYwMDY3LCJpYXQiOjE3MzgzNTk3NjcsImp0aSI6Ijk2NWYyMjcxZmMwZDQ5MDY5OGE1NzlkZjVlMTU3ZDQ2IiwidXNlcl9pZCI6NH0.0-OQ8jYKwtWjblDaakmR9XFtlpq1CSY1LWSf2EsYAaA
