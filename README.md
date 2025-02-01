@@ -1,5 +1,7 @@
 ## Read Mate Web Application Backend
 
+![Database ER diagram (crow's foot) (2)](https://github.com/user-attachments/assets/aa7ef41f-5f2f-4620-a3e7-890b88a2d09e)
+
 ```
 python manage.py shell
 
